@@ -15,7 +15,7 @@ abstract class Formatter protected () {
     val params = record.getParameters
 
     if (params != null && params.length > 0) {
-      // The Java spec uses java.text formatting not available in Scala.js
+      // The Java spec uses java.text formatting not available in Scala Native
       // Instead we'll do simple text replacement, very imperative
       var msgAccumulator = new StringBuilder()
       var inParam = false

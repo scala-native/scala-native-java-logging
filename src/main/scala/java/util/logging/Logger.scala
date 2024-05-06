@@ -76,7 +76,7 @@ object Logger {
     loggers.getOrElseUpdate(name, newLogger(name))
   }
 
-  // Not implemented, no resource bundle in scala.js
+  // Not implemented, no resource bundle in Scala Native
   //def getLogger(name: String, resourceBundle: String): Logger
 
   def getAnonymousLogger(): Logger = {
@@ -84,7 +84,7 @@ object Logger {
     newLogger(null)
   }
 
-  // Not implemented, no resource bundle in scala.js
+  // Not implemented, no resource bundle in Scala Native
   //def getAnonymousLogger(resourceBundle: String):Logger
 }
 

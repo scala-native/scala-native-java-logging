@@ -1,11 +1,11 @@
 # Contributing guidelines
 
-See the [contributing guidelines of Scala.js core](https://github.com/scala-js/scala-js/blob/main/CONTRIBUTING.md).
+See the [contributing guidelines of Scala Native core](https://github.com/scala-native/scala-native/blob/main/CONTRIBUTING.md).
 The same guidelines apply to this repository.
 
 ## Very important notice
 
-`scalajs-java-logging` contains a reimplementation of part of the JDK in Scala.js itself.
+`scala-native-java-logging` contains a reimplementation of part of the JDK in Scala Native itself.
 
 ***To contribute to this code, it is strictly forbidden to even look at the
 source code of the Oracle JDK or OpenJDK!***

@@ -1,12 +1,12 @@
-package org.scalajs.testsuite.javalib.util.logging
+package org.scalanative.testsuite.javalib.util.logging
 
 import java.util.logging._
 
 import org.junit.Test
 import org.junit.Assert._
 
-import org.scalajs.testsuite.utils.Platform
-import org.scalajs.testsuite.utils.AssertThrows._
+import org.scalanative.testsuite.utils.Platform
+import org.scalanative.testsuite.utils.AssertThrows._
 
 class HandlerTest {
   class TestHandler extends Handler {

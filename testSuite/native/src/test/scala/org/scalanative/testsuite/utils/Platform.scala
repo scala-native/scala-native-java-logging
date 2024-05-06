@@ -5,9 +5,9 @@
 ** /____/\___/_/ |_/____/_/ | |__/ /____/                               **
 **                          |/____/                                     **
 \*                                                                      */
-package org.scalajs.testsuite.utils
+package org.scalanative.testsuite.utils
 
-import scala.scalajs.runtime
+import scala.scalanative.runtime
 
 object Platform {
   /** Returns `true` if and only if the code is executing on a JVM.

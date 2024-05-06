@@ -1,4 +1,4 @@
-package org.scalajs.testsuite.javalib.util.logging
+package org.scalanative.testsuite.javalib.util.logging
 
 import java.io.ByteArrayOutputStream
 import java.util.logging._

@@ -1,11 +1,11 @@
-package org.scalajs.testsuite.javalib.util.logging
+package org.scalanative.testsuite.javalib.util.logging
 
 import java.util.logging.{Level, LogRecord, SimpleFormatter}
 
 import org.junit.{Before, Test}
 import org.junit.Assert._
 
-import org.scalajs.testsuite.utils.Platform
+import org.scalanative.testsuite.utils.Platform
 
 class SimpleFormatterTest {
   @Before def clearProperties():Unit = {

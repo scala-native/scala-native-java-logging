@@ -35,7 +35,7 @@ class Level protected (private[this] val name: String,
 
   def getName(): String = name
 
-  // Not implemented, no locale in Scala.js
+  // Not implemented, no locale in Scala Native
   //def getLocalizedName():String
 
   override def toString(): String = name

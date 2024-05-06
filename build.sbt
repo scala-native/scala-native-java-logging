@@ -1,33 +1,27 @@
 import sbtcrossproject.crossProject
 
-crossScalaVersions in ThisBuild := {
-  val allVersions = Seq("2.12.10", "2.11.12", "2.10.7", "2.13.1")
-  if (scalaJSVersion.startsWith("0.6."))
-    allVersions
-  else
-    allVersions.filter(!_.startsWith("2.10."))
-}
+crossScalaVersions in ThisBuild := Seq("2.12.19", "2.13.14")
 scalaVersion in ThisBuild := (crossScalaVersions in ThisBuild).value.head
 
 val commonSettings: Seq[Setting[_]] = Seq(
   version := "1.0.1-SNAPSHOT",
-  organization := "org.scala-js",
-  scalacOptions ++= Seq("-deprecation", "-feature", "-Xfatal-warnings"),
+  organization := "org.scala-native",
+  scalacOptions ++= Seq("-deprecation", "-feature"),
 
-  homepage := Some(url("http://scala-js.org/")),
+  homepage := Some(url("http://scala-native.org/")),
   licenses += ("BSD New",
-      url("https://github.com/scala-js/scala-js-java-logging/blob/main/LICENSE")),
+      url("https://github.com/scala-native/scala-native-java-logging/blob/main/LICENSE")),
   scmInfo := Some(ScmInfo(
-      url("https://github.com/scala-js/scala-js-java-logging"),
-      "scm:git:git@github.com:scala-js/scala-js-java-logging.git",
-      Some("scm:git:git@github.com:scala-js/scala-js-java-logging.git")))
+      url("https://github.com/scala-native/scala-native-java-logging"),
+      "scm:git:git@github.com:scala-native/scala-native-java-logging.git",
+      Some("scm:git:git@github.com:scala-native/scala-native-java-logging.git")))
 )
 
 lazy val root: Project = project.in(file(".")).
-  enablePlugins(ScalaJSPlugin).
+  enablePlugins(ScalaNativePlugin).
   settings(commonSettings).
   settings(
-    name := "scalajs-java-logging",
+    name := "scala-native-java-logging",
 
     mappings in (Compile, packageBin) ~= {
       _.filter(!_._2.endsWith(".class"))
@@ -64,17 +58,17 @@ lazy val root: Project = project.in(file(".")).
     pomIncludeRepository := { _ => false }
   )
 
-lazy val testSuite = crossProject(JSPlatform, JVMPlatform).
-  jsConfigure(_.enablePlugins(ScalaJSJUnitPlugin)).
+lazy val testSuite = crossProject(NativePlatform, JVMPlatform).
+  nativeConfigure(_.enablePlugins(ScalaNativeJUnitPlugin)).
   settings(commonSettings: _*).
   settings(
     testOptions +=
       Tests.Argument(TestFramework("com.novocode.junit.JUnitFramework"), "-v", "-a")
   ).
-  jsSettings(
-    name := "java.logging testSuite on JS"
+  nativeSettings(
+    name := "java.logging testSuite on Native"
   ).
-  jsConfigure(_.dependsOn(root)).
+  nativeConfigure(_.dependsOn(root)).
   jvmSettings(
     name := "java.logging testSuite on JVM",
     libraryDependencies +=
