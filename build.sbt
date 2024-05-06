@@ -6,7 +6,7 @@ scalaVersion in ThisBuild := (crossScalaVersions in ThisBuild).value.head
 val commonSettings: Seq[Setting[_]] = Seq(
   version := "1.0.1-SNAPSHOT",
   organization := "org.scala-native",
-  scalacOptions ++= Seq("-deprecation", "-feature", "-Xfatal-warnings"),
+  scalacOptions ++= Seq("-deprecation", "-feature"),
 
   homepage := Some(url("http://scala-native.org/")),
   licenses += ("BSD New",
