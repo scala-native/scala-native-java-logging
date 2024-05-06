@@ -24,10 +24,10 @@ class LogRecord(private[this] var level: Level, private[this] var msg: String) {
   def setLoggerName(loggerName: String): Unit =
     this.loggerName = loggerName
 
-  // Not implemented, no locale in Scala.js
+  // Not implemented, no locale in Scala Native
   //def getResourceBundle():ResourceBundle = ???
 
-  // Not implemented, no locale in Scala.js
+  // Not implemented, no locale in Scala Native
   //def setResourceBundle(bundle: ResourceBundle):Unit = ???
 
   // Message is not localizable, return null

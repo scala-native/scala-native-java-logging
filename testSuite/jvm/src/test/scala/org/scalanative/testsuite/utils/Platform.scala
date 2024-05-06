@@ -1,4 +1,4 @@
-package org.scalajs.testsuite.utils
+package org.scalanative.testsuite.utils
 
 object Platform {
   /** Returns `true` if and only if the code is executing on a JVM.

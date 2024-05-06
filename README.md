@@ -1,18 +1,18 @@
-# scalajs-java-logging
+# scala-native-java-logging
 
-[![CI](https://github.com/scala-js/scala-js-java-logging/actions/workflows/ci.yml/badge.svg)](https://github.com/scala-js/scala-js-java-logging/actions/workflows/ci.yml)
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-0.6.29.svg)](https://www.scala-js.org/)
-[![Scala.js](https://www.scala-js.org/assets/badges/scalajs-1.0.0.svg)](https://www.scala-js.org)
+[![CI](https://github.com/scala-native/scala-native-java-logging/actions/workflows/ci.yml/badge.svg)](https://github.com/scala-native/scala-native-java-logging/actions/workflows/ci.yml)
 
-`scalajs-java-logging` is a BSD-licensed reimplementation of the `java.logging` API for Scala.js.
-It enables this API in Scala.js projects.
+`scala-native-java-logging` is a BSD-licensed reimplementation of the `java.logging` API for Scala Native.
+It enables this API in Scala Native projects.
+
+Ported from https://github.com/scala-js/scala-js-java-logging.
 
 ## Usage
 
 Simply add the following line to your sbt settings:
 
 ```scala
-libraryDependencies += "org.scala-js" %%% "scalajs-java-logging" % "1.0.0"
+libraryDependencies += "org.scala-native" %%% "scala-native-java-logging" % "1.0.0"
 ```
 
 If you have a `crossProject`, the setting must be used only in the JS part:
@@ -20,8 +20,8 @@ If you have a `crossProject`, the setting must be used only in the JS part:
 ```scala
 lazy val myCross = crossProject.
   ...
-  jsSettings.(
-    libraryDependencies += "org.scala-js" %%% "scalajs-java-logging" % "1.0.0"
+  nativeSettings.(
+    libraryDependencies += "org.scala-native" %%% "scala-native-java-logging" % "1.0.0"
   )
 ```
 
@@ -36,7 +36,7 @@ classes and methods!
 
 ## License
 
-`scalajs-java-logging` is distributed under the
+`scala-native-java-logging` is distributed under the
 [BSD 3-Clause license](./LICENSE.txt).
 
 ## Contributing
