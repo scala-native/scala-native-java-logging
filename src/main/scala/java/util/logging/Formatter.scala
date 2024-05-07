@@ -11,8 +11,8 @@ abstract class Formatter protected () {
   def getTail(h: Handler): String = ""
 
   def formatMessage(record: LogRecord): String = {
-    val msg = record.getMessage
-    val params = record.getParameters
+    val msg = record.getMessage()
+    val params = record.getParameters()
 
     if (params != null && params.length > 0) {
       // The Java spec uses java.text formatting not available in Scala Native

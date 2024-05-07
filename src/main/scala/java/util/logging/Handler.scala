@@ -48,7 +48,7 @@ abstract class Handler protected () {
   def getLevel(): Level = level
 
   def isLoggable(record:LogRecord): Boolean = {
-    level.intValue() <= record.getLevel.intValue() &&
+    level.intValue() <= record.getLevel().intValue() &&
     (filter == null || filter.isLoggable(record))
   }
 }

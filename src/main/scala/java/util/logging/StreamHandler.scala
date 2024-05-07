@@ -19,8 +19,8 @@ class StreamHandler(private[this] var out: OutputStream,
   private[this] var headWritten: Boolean = false
 
   private def encodingOrDefault: Charset =
-    if (getEncoding == null) Charset.defaultCharset()
-    else Charset.forName(getEncoding)
+    if (getEncoding() == null) Charset.defaultCharset()
+    else Charset.forName(getEncoding())
 
   protected def setOutputStream(out: OutputStream): Unit = {
     // Required by javadocs

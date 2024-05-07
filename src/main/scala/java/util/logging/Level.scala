@@ -12,10 +12,10 @@ object Level {
   val FINEST: Level = new Level("FINEST", 300)
   val ALL: Level = new Level("ALL", Int.MinValue)
 
-  private lazy val knownLevels = Map[String, Level](OFF.getName -> OFF,
-      SEVERE.getName -> SEVERE, WARNING.getName -> WARNING,
-      INFO.getName -> INFO, CONFIG.getName -> CONFIG, FINE.getName -> FINE,
-      FINER.getName -> FINER, FINEST.getName -> FINEST, ALL.getName -> ALL)
+  private lazy val knownLevels = Map[String, Level](OFF.getName() -> OFF,
+      SEVERE.getName() -> SEVERE, WARNING.getName() -> WARNING,
+      INFO.getName() -> INFO, CONFIG.getName() -> CONFIG, FINE.getName() -> FINE,
+      FINER.getName() -> FINER, FINEST.getName() -> FINEST, ALL.getName() -> ALL)
 
   def parse(name: String): Level =
     if (name == null) throw new NullPointerException("Name cannot be null")
