@@ -3,7 +3,7 @@ import sbtcrossproject.crossProject
 ThisBuild / crossScalaVersions := Seq("2.12.19", "2.13.14", "3.3.3")
 ThisBuild / scalaVersion := (ThisBuild / crossScalaVersions).value.last
 val commonSettings: Seq[Setting[_]] = Seq(
-  version := "1.0.0",
+  version := "1.0.1-SNAPSHOT",
   organization := "org.scala-native",
   scalacOptions ++= Seq("-deprecation", "-feature", "-release:8"),
   homepage := Some(url("http://scala-native.org/")),
