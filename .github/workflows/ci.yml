@@ -1,6 +1,8 @@
 name: CI
 on:
   push:
+    tags:
+      - '*'
     branches:
       - main
   pull_request:
@@ -8,22 +10,43 @@ on:
       - main
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
-        scalaversion: ["2.12.19", "2.13.14"]
+        scalaversion: ["2.12.19", "2.13.14", "3.3.3"]
     steps:
-      - uses: actions/checkout@v2
-      - uses: olafurpg/setup-scala@v10
+      - uses: actions/checkout@v3
+      - uses: coursier/cache-action@v6
+      - uses: coursier/setup-action@v1
         with:
-          java-version: "adopt@1.8"
-      - uses: coursier/cache-action@v5
-      - name: Scalastyle
-        run: sbt "++${{ matrix.scalaversion }}" root/scalastyle testSuiteJVM/scalastyle testSuiteJVM/test:scalastyle testSuiteNative/scalastyle testSuiteNative/test:scalastyle
+          jvm: adopt:8
       - name: Test JVM
         run: sbt "++${{ matrix.scalaversion }}" testSuiteJVM/test
       - name: Test Native
         run: sbt "++${{ matrix.scalaversion }}" testSuiteNative/test
       - name: Test publish
         run: sbt "++${{ matrix.scalaversion }}" publishLocal
+
+  publish:
+    name: Publish
+    runs-on: ubuntu-22.04
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/')
+    needs: [build]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: coursier/cache-action@v6
+      - uses: coursier/setup-action@v1
+        with:
+          jvm: adopt:8
+      - name: Setup PGP Key
+        run: |
+          echo -n "$PGP_SECRET" | base64 --decode | gpg --batch --import
+        env:
+          PGP_SECRET: ${{ secrets.PGP_SECRET }}
+      - name: Publish release
+        env:
+          MAVEN_USER: "${{ secrets.SONATYPE_USER }}"
+          MAVEN_PASSWORD: "${{ secrets.SONATYPE_PASSWORD }}"
+          PGP_PASSPHRASE: "${{ secrets.PGP_PASSWORD }}"
+        run: sbt "clean;+root/publishSigned"
