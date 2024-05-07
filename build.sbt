@@ -35,6 +35,17 @@ lazy val root: Project = project
       else
         Some("releases" at nexus + "service/local/staging/deploy/maven2")
     },
+    credentials ++= {
+      for {
+        user <- sys.env.get("MAVEN_USER")
+        password <- sys.env.get("MAVEN_PASSWORD")
+      } yield Credentials(
+        realm = "Sonatype Nexus Repository Manager",
+        host = "oss.sonatype.org",
+        userName = user,
+        passwd = password
+      )
+    }.toSeq,
     pomExtra := (
       <developers>
           <developer>
