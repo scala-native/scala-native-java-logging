@@ -44,14 +44,14 @@ object Logger {
   }
 
   private def updateChildLoggerParent(newParent: Logger): Unit ={
-    val prefix = s"${newParent.getName}."
+    val prefix = s"${newParent.getName()}."
     // Traverse all child loggers of the new parent
     for ((name, childLogger) <- loggers if name.startsWith(prefix)) {
-      val currentParent = childLogger.getParent
+      val currentParent = childLogger.getParent()
       // For example, when a new parent a.b is added:
       // - if child is a.b.c.d (parent = null) => needs to be a.b.c.d (parent = a.b)
       // - if child is a.b.c.e (parent = a.b.c) => no update is required.
-      if (currentParent == null || !currentParent.getName.startsWith(prefix)) {
+      if (currentParent == null || !currentParent.getName().startsWith(prefix)) {
         childLogger.setParent(newParent)
       }
     }
@@ -100,9 +100,9 @@ class Logger(name: String, resourceBundle: String) {
   private def levelR: Level = {
     @tailrec
     def go(logger: Logger): Level = {
-      if (logger.getLevel != null) logger.getLevel
-      else if (logger.getParent == null) null
-      else go(logger.getParent)
+      if (logger.getLevel() != null) logger.getLevel()
+      else if (logger.getParent() == null) null
+      else go(logger.getParent())
     }
 
     go(this)
@@ -128,7 +128,7 @@ class Logger(name: String, resourceBundle: String) {
   }
 
   def log(record: LogRecord): Unit = {
-    if (isLoggable(record.getLevel)) {
+    if (isLoggable(record.getLevel())) {
       publish(record)
     }
   }

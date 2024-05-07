@@ -11,11 +11,11 @@ class SimpleFormatter extends Formatter {
     val fmt =
       System.getProperty("java.util.logging.SimpleFormatter.format", defaultFmt)
 
-    String.format(fmt, new Date(record.getMillis),
-        Option(record.getSourceClassName).getOrElse(""),
-        Option(record.getLoggerName).getOrElse(""),
-        record.getLevel,
+    String.format(fmt, new Date(record.getMillis()),
+        Option(record.getSourceClassName()).getOrElse(""),
+        Option(record.getLoggerName()).getOrElse(""),
+        record.getLevel(),
         formatMessage(record),
-        record.getThrown)
+        record.getThrown())
   }
 }
