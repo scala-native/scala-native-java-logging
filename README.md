@@ -5,7 +5,7 @@
 `scala-native-java-logging` is a BSD-licensed reimplementation of the `java.logging` API for Scala Native.
 It enables this API in Scala Native projects.
 
-Ported from https://github.com/scala-js/scala-js-java-logging.
+Ported from https://github.com/scala-js/scala-js-java-logging/tree/b166a058c85c6e3d1d305d84cb932efdc5c920af.
 
 ## Usage
 
